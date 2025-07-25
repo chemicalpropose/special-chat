@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رابط - پیام‌رسان سازمانی امن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-background">
+            <div class="geometric-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        
+        <div class="container-fluid h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="login-card">
+                        <div class="login-header text-center mb-4">
+                            <div class="logo-container mb-3">
+                                <div class="app-logo">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                            </div>
+                            <h2 class="app-title">رابط</h2>
+                            <p class="app-subtitle">پیام‌رسان سازمانی امن</p>
+                        </div>
+                        
+                        <form class="login-form" onsubmit="handleLogin(event)">
+                            <div class="form-group mb-3">
+                                <label class="form-label">نام کاربری سازمانی</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="username" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label class="form-label">رمز عبور</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                    <input type="password" class="form-control" id="password" required>
+                                    <button type="button" class="btn btn-outline-secondary toggle-password">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-login w-100 mb-3">
+                                <span class="btn-text">ورود به سامانه</span>
+                                <div class="btn-loader d-none">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+                        </form>
+                        
+                        <div class="login-footer text-center">
+                            <div class="security-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>اتصال امن SSL</span>
+                            </div>
+                            <small class="text-muted d-block mt-2">
+                                © 2025 تمامی حقوق محفوظ است
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="main-app d-none">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="header-right d-flex align-items-center">
+                        <button class="btn btn-link mobile-menu-toggle d-lg-none">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="app-brand d-flex align-items-center">
+                            <div class="app-logo-small">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <span class="brand-text">رابط</span>
+                        </div>
+                    </div>
+                    
+                    <div class="header-center">
+                        <div class="search-container">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-input" placeholder="جستجو در گفتگوها...">
+                                <span class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="header-left d-flex align-items-center">
+                        <div class="user-actions d-flex align-items-center">
+                            <button class="btn btn-link header-btn" onclick="toggleView('admin')">
+                                <i class="fas fa-chart-line"></i>
+                                <span class="btn-tooltip">پنل مدیریت</span>
+                            </button>
+                            <div class="notification-dropdown dropdown">
+                                <button class="btn btn-link header-btn dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="notification-badge">3</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end notification-menu">
+                                    <div class="notification-header">
+                                        <h6>اعلان‌ها</h6>
+                                    </div>
+                                    <div class="notification-item">
+                                        <div class="notification-content">
+                                            <strong>پیام جدید</strong>
+                                            <p>پیام جدید از احمد رضایی</p>
+                                            <small>2 دقیقه پیش</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user-dropdown dropdown">
+                                <button class="btn btn-link user-btn dropdown-toggle" data-bs-toggle="dropdown">
+                                    <div class="user-avatar">
+                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400" alt="User">
+                                    </div>
+                                    <span class="user-name">مهدی احمدی</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end user-menu">
+                                    <div class="user-info">
+                                        <strong>مهدی احمدی</strong>
+                                        <small>مدیر IT</small>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#"><i class="fas fa-user"></i> پروفایل</a>
+                                    <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> تنظیمات</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-danger" href="#" onclick="logout()">
+                                        <i class="fas fa-sign-out-alt"></i> خروج
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="app-body">
+            <!-- Chat View -->
+            <div id="chatView" class="chat-view">
+                <div class="row h-100 g-0">
+                    <!-- Sidebar -->
+                    <div class="col-lg-3 col-md-4 sidebar-col">
+                        <div class="chat-sidebar">
+                            <div class="sidebar-header">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h5 class="sidebar-title">گفتگوها</h5>
+                                    <button class="btn btn-sm btn-primary new-chat-btn">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="chat-tabs mt-3">
+                                    <div class="nav nav-pills" role="tablist">
+                                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#all-chats">همه</button>
+                                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#groups">گروه‌ها</button>
+                                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#direct">مستقیم</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="sidebar-content">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="all-chats">
+                                        <div class="chat-list">
+                                            <div class="chat-item active" onclick="selectChat(this, 'احمد رضایی')">
+                                                <div class="chat-avatar">
+                                                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" alt="احمد رضایی">
+                                                    <span class="status-indicator online"></span>
+                                                </div>
+                                                <div class="chat-info">
+                                                    <div class="chat-name">احمد رضایی</div>
+                                                    <div class="chat-preview">گزارش ماهانه آماده شد</div>
+                                                    <div class="chat-time">10:30</div>
+                                                </div>
+                                                <div class="chat-badge">
+                                                    <span class="badge bg-primary">2</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="chat-item" onclick="selectChat(this, 'تیم توسعه')">
+                                                <div class="chat-avatar group-avatar">
+                                                    <i class="fas fa-users"></i>
+                                                </div>
+                                                <div class="chat-info">
+                                                    <div class="chat-name">تیم توسعه</div>
+                                                    <div class="chat-preview">سارا: بروزرسانی جدید منتشر شد</div>
+                                                    <div class="chat-time">09:45</div>
+                                                </div>
+                                                <div class="chat-badge">
+                                                    <span class="badge bg-success">5</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="chat-item" onclick="selectChat(this, 'فاطمه محمدی')">
+                                                <div class="chat-avatar">
+                                                    <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400" alt="فاطمه محمدی">
+                                                    <span class="status-indicator away"></span>
+                                                </div>
+                                                <div class="chat-info">
+                                                    <div class="chat-name">فاطمه محمدی</div>
+                                                    <div class="chat-preview">جلسه فردا تایید شد</div>
+                                                    <div class="chat-time">دیروز</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="chat-item" onclick="selectChat(this, 'علی حسینی')">
+                                                <div class="chat-avatar">
+                                                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=400" alt="علی حسینی">
+                                                    <span class="status-indicator offline"></span>
+                                                </div>
+                                                <div class="chat-info">
+                                                    <div class="chat-name">علی حسینی</div>
+                                                    <div class="chat-preview">مدارک ارسال شد</div>
+                                                    <div class="chat-time">دیروز</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Area -->
+                    <div class="col-lg-9 col-md-8 chat-col">
+                        <div class="chat-container">
+                            <div class="chat-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="chat-user-avatar">
+                                        <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" alt="User">
+                                        <span class="status-indicator online"></span>
+                                    </div>
+                                    <div class="chat-user-info">
+                                        <h6 class="chat-user-name">احمد رضایی</h6>
+                                        <small class="chat-user-status">آنلاین</small>
+                                    </div>
+                                </div>
+                                <div class="chat-actions">
+                                    <button class="btn btn-link chat-action-btn">
+                                        <i class="fas fa-phone"></i>
+                                    </button>
+                                    <button class="btn btn-link chat-action-btn">
+                                        <i class="fas fa-video"></i>
+                                    </button>
+                                    <button class="btn btn-link chat-action-btn">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="message-group">
+                                    <div class="message received">
+                                        <div class="message-content">
+                                            <p>سلام، گزارش ماهانه پروژه آماده شد. لطفاً بررسی کنید.</p>
+                                            <div class="message-time">10:25</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="message-group sent">
+                                    <div class="message sent">
+                                        <div class="message-content">
+                                            <p>عالی! همین الان بررسی می‌کنم. ممنون از پیگیری.</p>
+                                            <div class="message-time">10:27</div>
+                                            <div class="message-status">
+                                                <i class="fas fa-check-double text-primary"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="message-group">
+                                    <div class="message received">
+                                        <div class="message-content">
+                                            <p>فایل ضمیمه را هم ارسال کردم. در صورت نیاز به توضیحات بیشتر، در خدمت هستم.</p>
+                                            <div class="message-attachment">
+                                                <div class="attachment-item">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                    <div class="attachment-info">
+                                                        <span class="attachment-name">گزارش_ماهانه_دی_1403.pdf</span>
+                                                        <span class="attachment-size">2.3 MB</span>
+                                                    </div>
+                                                    <button class="btn btn-sm btn-outline-primary">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="message-time">10:30</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="chat-input-container">
+                                <form class="chat-input-form" onsubmit="sendMessage(event)">
+                                    <div class="input-group">
+                                        <button type="button" class="btn btn-link attachment-btn">
+                                            <i class="fas fa-paperclip"></i>
+                                        </button>
+                                        <input type="text" class="form-control message-input" placeholder="پیام خود را بنویسید..." id="messageInput">
+                                        <button type="button" class="btn btn-link emoji-btn">
+                                            <i class="fas fa-smile"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-primary send-btn">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Dashboard -->
+            <div id="adminView" class="admin-view d-none">
+                <div class="container-fluid">
+                    <div class="admin-header mb-4">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h3 class="admin-title">پنل مدیریت و نظارت</h3>
+                                <p class="admin-subtitle">رصد و کنترل ارتباطات سازمانی</p>
+                            </div>
+                            <button class="btn btn-outline-secondary" onclick="toggleView('chat')">
+                                <i class="fas fa-arrow-right"></i>
+                                بازگشت به چت
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-primary">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-number">42</div>
+                                    <div class="stat-label">کاربران فعال</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-success">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-number">1,284</div>
+                                    <div class="stat-label">پیام‌های امروز</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-warning">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-number">3</div>
+                                    <div class="stat-label">هشدارهای امنیتی</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-info">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-number">89</div>
+                                    <div class="stat-label">فایل‌های ارسالی</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-8 mb-4">
+                            <div class="admin-card">
+                                <div class="card-header">
+                                    <h5>فعالیت‌های اخیر</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="activity-list">
+                                        <div class="activity-item">
+                                            <div class="activity-icon bg-primary">
+                                                <i class="fas fa-user-plus"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">کاربر جدید</div>
+                                                <div class="activity-desc">مریم صادقی به سامانه اضافه شد</div>
+                                                <div class="activity-time">5 دقیقه پیش</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="activity-item">
+                                            <div class="activity-icon bg-success">
+                                                <i class="fas fa-comment"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">پیام جدید</div>
+                                                <div class="activity-desc">احمد رضایی فایل گزارش ارسال کرد</div>
+                                                <div class="activity-time">12 دقیقه پیش</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="activity-item">
+                                            <div class="activity-icon bg-warning">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">هشدار امنیتی</div>
+                                                <div class="activity-desc">تلاش ورود ناموفق از IP ناشناس</div>
+                                                <div class="activity-time">1 ساعت پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 mb-4">
+                            <div class="admin-card">
+                                <div class="card-header">
+                                    <h5>کاربران آنلاین</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="online-users">
+                                        <div class="user-item">
+                                            <div class="user-avatar">
+                                                <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" alt="User">
+                                                <span class="status-dot online"></span>
+                                            </div>
+                                            <div class="user-info">
+                                                <div class="user-name">احمد رضایی</div>
+                                                <div class="user-role">مدیر پروژه</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="user-item">
+                                            <div class="user-avatar">
+                                                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400" alt="User">
+                                                <span class="status-dot online"></span>
+                                            </div>
+                                            <div class="user-info">
+                                                <div class="user-name">فاطمه محمدی</div>
+                                                <div class="user-role">توسعه‌دهنده</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="user-item">
+                                            <div class="user-avatar">
+                                                <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=400" alt="User">
+                                                <span class="status-dot away"></span>
+                                            </div>
+                                            <div class="user-info">
+                                                <div class="user-name">علی حسینی</div>
+                                                <div class="user-role">طراح UI/UX</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
