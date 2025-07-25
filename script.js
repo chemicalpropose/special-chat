@@ -109,7 +109,7 @@ function handleLogin(event) {
 
     // Simulate API call
     setTimeout(() => {
-        if (username && password) {
+        if (username === 'admin' && password === 'admin') {
             // Success
             currentUser = {
                 id: 1,
